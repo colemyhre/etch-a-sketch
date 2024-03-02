@@ -1,0 +1,14 @@
+.box {
+    border: 1px solid red;
+    padding: 0px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    width: 60vh;
+    height: 60vh;
+    border: 22px solid blue;
+}

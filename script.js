@@ -4,37 +4,36 @@ let numDivs = 0;
 let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
+
 let btn = document.querySelector('.startSketch');
 btn.addEventListener('click', () => {
     let container = document.querySelector('.container');
     clearDivs(container);
-    let userInput = prompt('How many columns/rows?');
-    let numDivs = userInput*userInput;
-    //let boxWidth = (vw)/userInput;
-    let boxHeight = (0.6*vh)/(userInput);
-    console.log(vh);
-    console.log(boxHeight);
+    let userInput = prompt('How many columns/rows? (Max 100)');
+    let dropDown = document.querySelector('select');
+    console.log(dropDown.value);
 
-    
+    if (userInput > 100) {
+        alert('Too large! Select a number under 100.');
+    }
+    else {
+        let numDivs = userInput*userInput;
+        //let boxWidth = (vw)/userInput;
+        let boxHeight = (0.8*vh)/(userInput)-2;
+        console.log(0.8*vh);
+        console.log(boxHeight);
 
-    for (let i=0; i<numDivs; i++) {
-        let box = document.createElement('div');
-        box.classList.add('box');
-        //box.style.width = boxWidth+'px';
-        box.style.height = boxHeight+'px';
-        box.style.width = boxHeight+'px';
-        box.addEventListener('mouseover', () => {
-            box.style.backgroundColor = darkenColor(box);
-            // let checkColor = getComputedStyle(box).backgroundColor;
-            // checkColor = checkColor.substring(5,checkColor.length-1);
-            // checkColor = checkColor.replace(/ /g, '');
-            // checkColor = checkColor.split(',');
-            // console.log(checkColor);
-            // let sat = checkColor[3];
-            // console.log(sat);
-            //box.style.backgroundColor = 'hsl(120, 90%, 90%)';
-        })
-        container.appendChild(box);
+
+        for (let i=0; i<numDivs; i++) {
+            let box = document.createElement('div');
+            box.classList.add('box');
+            box.style.height = boxHeight+'px';
+            box.style.width = boxHeight+'px';
+            box.addEventListener('mouseover', () => {
+                box.style.backgroundColor = darkenColor(box);
+            })
+            container.appendChild(box);
+        }
     }
 })
 

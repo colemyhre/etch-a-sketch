@@ -19,7 +19,7 @@ btn.addEventListener('click', () => {
     else {
         let numDivs = userInput*userInput;
         //let boxWidth = (vw)/userInput;
-        let boxHeight = (0.8*vh)/(userInput)-2;
+        let boxHeight = (0.8*vh)/(userInput);
         console.log(0.8*vh);
         console.log(boxHeight);
 
@@ -30,7 +30,12 @@ btn.addEventListener('click', () => {
             box.style.height = boxHeight+'px';
             box.style.width = boxHeight+'px';
             box.addEventListener('mouseover', () => {
-                box.style.backgroundColor = darkenColor(box);
+                if (dropDown.value == 'Black and White') {
+                    box.style.backgroundColor = darkenColor(box);
+                }
+                else if (dropDown.value == 'RGB') {
+                    box.style.backgroundColor = changeColor(box);
+                }
             })
             container.appendChild(box);
         }
@@ -52,10 +57,37 @@ function darkenColor(box) {
     let gVal = color[1];
     let bVal = color[2];
     let sat = color[3];
-    console.log(sat);
     sat = Number(sat);
-    //sat = sat.toFixed(0);
-    console.log(sat);
+    
+    if (sat == 1) {
+        console.log(checkColor);
+        return checkColor;
+    }
+    else if (sat == 0.9) {
+        newColor = 'rgba('+rVal+', '+gVal+', '+bVal+', '+1+')';
+        return newColor;
+        console.log(newColor);
+    }
+    else {
+        newColor = 'rgba('+rVal+', '+gVal+', '+bVal+', '+(sat+0.1)+')';
+        return newColor;
+    }
+}
+
+function changeColor(box) {
+    let checkColor = getComputedStyle(box).backgroundColor;
+    let color = checkColor.substring(5,checkColor.length-1);
+    color = color.replace(/ /g, '');
+    color = color.split(',');
+    let rVal = color[0];
+    let gVal = color[1];
+    let bVal = color[2];
+    let sat = color[3];
+    sat = Number(sat);
+
+    rVal = (Math.random())*255;
+    gVal = (Math.random())*255;
+    bVal = (Math.random())*255;
     
     if (sat == 1) {
         console.log(checkColor);

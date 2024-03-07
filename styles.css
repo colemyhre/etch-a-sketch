@@ -1,5 +1,5 @@
 .box {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* padding: 0px; */
     /* flex: 1 0 auto; */
     /* flex-basis: 25%; */
@@ -13,4 +13,11 @@
     width: 80vh;
     height: 80vh;
     border: 10px solid blue;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
 }
